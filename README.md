@@ -30,7 +30,7 @@ Los parametros que recibira el endpoint son:
 }
 ```
 
-**Resultado del endpoint:**
+**Resultado del endpoint:**  
 En caso de que todos los productos esten bien y sean validos se deben de almacenar en la base y regresar:  
 **HTTP Code 200**  
 ```
