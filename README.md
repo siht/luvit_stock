@@ -1,7 +1,7 @@
 # Backend Challenge: #
 
 ### Objetivo ###
-El objetivo del challenge es crear un API utilizando python 3+ con django que pueda recibir un array de objetos de tipo “Product” y basicamente el servicio debe validar distintos cosas en el producto y regresar un resultado como respuesta con un 200 en el caso de que todos los productos sean validos, en el caso contrario debe regresar un 422 indicando un listado de los errores que encontro  ya sea porque no pudo parsear algunos productos o porque algun producto no paso las validaciones.
+El objetivo del challenge es crear un API utilizando python 3+ con django que pueda recibir un array de objetos de tipo “Product” y basicamente el servicio debe validar distintos puntos en el producto y regresar un resultado como respuesta con un 200 en el caso de que todos los productos sean validos, en el caso contrario debe regresar un 422 indicando un listado de los errores que encontro  ya sea porque no pudo parsear algunos productos o porque algun producto no paso las validaciones.
 
 ### Especificaciones del API: ###
 **El objeto producto debe tener la siguiente estructura:**
