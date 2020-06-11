@@ -15,8 +15,8 @@ Product {
 }
 ```
 
-**El endpoint debe debe ser el siguiente:**  
-POST api/products/bulk_validate
+**El primer endpoint se ocupara para insertar un array de productos y tiene las siguientes caracteristicas:**  
+POST api/products/bulk_insert
 
 **Parametros del endpoint:**  
 Los parametros que recibira el endpoint son:
@@ -31,7 +31,7 @@ Los parametros que recibira el endpoint son:
 ```
 
 **Resultado del endpoint:**
-En caso de que todos los productos esten bien y sean validos:  
+En caso de que todos los productos esten bien y sean validos se deben de almacenar en la base y regresar:  
 **HTTP Code 200**  
 ```
 {
@@ -51,6 +51,16 @@ En caso de que uno o mas productos no pasen la validación o si alguno de los pr
 		},...
 	],
 	"number_of_products_unable_to_parse": Int (Este campo es en el caso de recibir un json con algun producto que no se pueda parsear se debe acumular la cantidad de productos que no se pudieron siquiera parsear en este campo, si no hubo niguno solo colocar un 0.)
+}
+```
+
+**El segundo endpoint debe de listar todos los productos de la base:**  
+GET api/products  
+
+**No recibe parametros y su respuesta es:**  
+```
+{
+	"products": [Product]
 }
 ```
 
