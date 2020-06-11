@@ -1,7 +1,7 @@
 # Backend Challenge: #
 
 ### Objetivo ###
-El objetivo del challenge es crear un API utilizando python 3+ con django que pueda recibir un array de objetos de tipo “Product” y basicamente el servicio debe validar distintos puntos en el producto y regresar un resultado como respuesta con un 200 en el caso de que todos los productos sean validos, en el caso contrario debe regresar un 422 indicando un listado de los errores que encontro  ya sea porque no pudo parsear algunos productos o porque algun producto no paso las validaciones.
+El objetivo del challenge es crear un API utilizando python 3+ con django que pueda recibir un array de objetos de tipo “Product” y basicamente el servicio debe validar distintos puntos en el producto y regresar un resultado como respuesta con un 200 en el caso de que todos los productos sean validos, en el caso contrario debe regresar un 422 indicando un listado de los errores que encontro ya sea porque no pudo parsear algunos productos o porque algun producto no paso las validaciones, en el caso de que todos los productos pasen la validacion, se deben almacenar en la base de datos.
 
 ### Especificaciones del API: ###
 **El objeto producto debe tener la siguiente estructura:**
@@ -84,6 +84,7 @@ GET api/products
 ### Puntos que vamos a evaluar:  ###
 * Creacion del API/endpoint.   
 * Modelado y arquitectura de los objetos.  
+* Guardado de los productos en base de datos.  
 * Testing de los modelos y el endpoint.  
 * Deployment a AWS.  
 * Claridad en los commits.  
@@ -94,6 +95,7 @@ GET api/products
 * El codigo debe subirse a github en un repositorio publico.  
 * En el repositorio el README file debe tener un ejemplo de como consumir el endpoint utilizando un curl.  
 * No invertir mas de 5 horas en el transcurso de 2 dias.  
+* No es necesario cumplir con todos los puntos, queremos ver en el caso de tener poco tiempo cuales son los items que priorizas.  
 * Hacer varios commits, no un solo commit, ya que es un elemento a evaluar.  
 * Al finalizar se debe enviar el repo a los siguientes correos:  
 >kevin@plataforma.io  
