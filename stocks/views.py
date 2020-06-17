@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView
 
-# Create your views here.
+from .models import Product
+from .serializers import ProductSerializer
+
+
+class BulkInsertProductView(CreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
