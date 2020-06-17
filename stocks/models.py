@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+
+class Product(models.Model):
+    product_id = models.CharField(max_length=32)
+    name = models.CharField(max_lenght=55)
+    value = models.FloatField()
+    discount = models.FloatField()
+    stock = models.IntegerField()
