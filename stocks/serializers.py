@@ -4,10 +4,16 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(source='product_id')
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = (
+            'id',
+            'name',
+            'value',
+            'discount',
+            'stock',
+        )
 
     def create(self, validated_data):
-        for product_data in validated_data:
-            Product.objects.create(**product_data)
+        return Product(**validated_data)
