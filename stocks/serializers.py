@@ -14,6 +14,3 @@ class ProductSerializer(serializers.ModelSerializer):
             'discount',
             'stock',
         )
-
-    def create(self, validated_data):
-        return Product(**validated_data)
