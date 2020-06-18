@@ -5,6 +5,7 @@ from .models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
     id = serializers.CharField(source='product_id')
+    discount_value = serializers.FloatField(source='discount', required=False)
 
     class Meta:
         model = Product
@@ -12,7 +13,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'value',
-            'discount',
+            'discount_value',
             'stock',
         )
     
