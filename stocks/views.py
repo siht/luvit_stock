@@ -1,5 +1,8 @@
 from rest_framework import status
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    ListAPIView,
+)
 from rest_framework.response import Response
 
 from .models import Product
@@ -37,3 +40,22 @@ class BulkInsertProductView(CreateAPIView):
             error_response,
             status=status.HTTP_422_UNPROCESSABLE_ENTITY
         )
+
+
+class ListProductsView(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        data_response = {
+            'Products': serializer.data
+        }
+        return Response(data_response)

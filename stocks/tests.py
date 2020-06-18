@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -7,7 +9,10 @@ from rest_framework.test import (
 )
 
 from .models import Product
-from .views import BulkInsertProductView
+from .views import (
+    BulkInsertProductView,
+    ListProductsView,
+)
 
 
 class ViewsTests(TestCase):
@@ -22,6 +27,16 @@ class ViewsTests(TestCase):
         )
         cls.factory = APIRequestFactory()
         cls.bulk_insert_path = reverse('products:bulk-insert')
+        cls.list_path = reverse('products:list')
+        dict_product = {
+            'product_id': '1234',
+            'name': 'pre-existente',
+            'value': 100,
+            'discount': 10,
+            'stock': 100
+        }
+        product = Product(**dict_product)
+        product.save()
         
 
     def test_bulk_create_all_right(self):
@@ -52,7 +67,7 @@ class ViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data, {'status': 'OK'})
         self.assertEqual(
-            len(Product.objects.all()),
+            len(Product.objects.filter(product_id__in=['abcd', 'abce'])),
             len(json_products_for_insert.get('products'))
         )
 
@@ -108,3 +123,25 @@ class ViewsTests(TestCase):
         response = BulkInsertProductView.as_view()(request)
         self.assertEqual(response.status_code, 422)
         self.assertEqual(response.data, error_response)
+
+    def test_list_products(self):
+        request = self.factory.get(
+            self.list_path,
+            format='json'
+        )
+        response = ListProductsView.as_view()(request)
+        expected_response = {
+            'Products': [
+                OrderedDict(
+                    [
+                        ('id', '1234'),
+                        ('name', 'pre-existente'),
+                        ('value', 100.0),
+                        ('discount_value', 10.0),
+                        ('stock', 100)
+                    ]
+                )
+            ]
+        }
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data, expected_response)
